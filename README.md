@@ -9,3 +9,5 @@ updated and standardized names before final use for Microsoft Azure Learn articl
 will result in only predictFromLocalImage.py predictFromURLImage.py scoreFromURLImage.py, and consume.ipynb
 
 
+2024Jan21 LATER after mark makes mike use the Windows App Credentials Manager (not WEB) which HAD stored michae-vogt-avanade credentials....   got updated to 'docvogt' and mikes latest PAT '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'
+
