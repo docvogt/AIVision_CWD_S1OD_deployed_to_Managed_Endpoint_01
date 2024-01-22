@@ -11,6 +11,28 @@
 
 # HISTORY/REVISIONS  STACK FASHION PUSHING DOWN 
 #======================================================================================
+# 2024Jan22 mcvogt
+# after much updating and retesting, the following line has shown to be functional and working, uses Azure Storage Account mike made public and stored images
+
+# (venv-python3113-datascience) C:\Development\GitHub\AIVision_CWD_S1OD_deployed_to_Managed_Endpoint_01>python predictFromURLImage.py NADeerCWDobjectdetector.ONNX/model.onnx https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Cropped_IC_Model/DeerDayHealthyCandidates/TestImageBlob.jpg<Enter>
+
+# NOTE - this is a calling sequence MUCH like the predictFromLocalImage.py,      to use the URL version the user enters the following data separated by spaces...  
+# (venv-python3113-datascience)                 # <--- make sure user has activated a legit venv that has the needed packages installed....
+# >python                                       # must call the python interpreter first... 
+# predictFromURLImage.py                        # must provide the name of the Script to be executed...
+# NADeerCWDobjectdetector.ONNX/model.onnx       # must designate the local .ONNX model being used for inferencing...
+# https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Cropped_IC_Model/DeerDayHealthyCandidates/TestImageBlob.jp.get # provide the URL!!!
+# <Enter>
+# NOTE these must ALL be on one continuous command line.  example of expected output will look like this...  
+
+# args.model_filepath  =  NADeerCWDobjectdetector.ONNX\model.onnx
+# args.image_filepath  =  https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Cropped_IC_Model/DeerDayHealthyCandidates/TestImageBlob.jpg
+
+# Label: Healthy Deer, Probability: 0.01836, box: (0.02668, 0.04184) (0.80692, 0.81477)
+
+
+
+
 # 2023Nov09 mcvogt
 # mike modifying this to try and reach into Azure Storage Account for a file to process...
 # test file is in ASA ...   anonymous blob abd container access is permitted...

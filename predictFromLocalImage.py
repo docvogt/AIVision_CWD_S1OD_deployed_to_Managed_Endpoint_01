@@ -11,6 +11,13 @@
 
 # HISTORY/REVISIONS
 #======================================================================================
+# 2024Jan22 mcvogt
+# after updated naming conventions, tested, verified is all still working, and saved below working test command for local image...  
+# (venv-python3113-datascience) C:\Development\GitHub\AIVision_CWD_S1OD_deployed_to_Managed_Endpoint_01>python predictFromLocalImage.py NADeerCWDobjectdetector.ONNX/model.onnx TestImageHealthyDeerDayBuck.jpg<Enter>
+# Label: Healthy Deer, Probability: 0.99009, box: (0.29941, 0.50782) (0.61335, 0.81000)
+# Label: UnHealthy Deer, Probability: 0.02532, box: (0.34874, 0.00170) (0.58188, 0.55292)
+# Label: Healthy Deer, Probability: 0.01254, box: (0.00925, 0.15533) (0.87207, 0.98420)
+
 # 2023Nov03 mcvogt
 # this is mikes most recent update from inside an Azure ML Notebook - just prior to downloading the whole
 # python project with renamed .ONNX folder, so it can be used as source for Deploying to a Managed Endpoint using the 
