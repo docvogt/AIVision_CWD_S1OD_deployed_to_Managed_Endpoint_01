@@ -12,3 +12,5 @@ will result in only predictFromLocalImage.py predictFromURLImage.py scoreFromURL
 2024Jan21 LATER after mark makes mike use the Windows App Credentials Manager (not WEB) which HAD stored michae-vogt-avanade   credentials....   got updated to 'docvogt' and mikes latest PAT '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'   
 
 2024Jan22 mcvogt more housekeeping and retesting/reverifying of all scripts  
+
+2024Jan23 mcvogt MUCH later, 7:26PM, mike reclones the entire repo to AML, after wiping out ALL traces of .git files both in and above the target project folder...
