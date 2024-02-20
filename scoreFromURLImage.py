@@ -1,6 +1,6 @@
 # 2023Nov from   https://stackoverflow.com/questions/59175701/score-py-azureml-for-images
 # this is the COMMENT-lite version...
-# this file was archived after creating a successful Deployment to a Managed Endpoint using a Curated Envrionment and 3X E4s_v3 SKU w 4cores/32GBRAM/64GBSSD
+# this file was archived after creating a successful Deployment to a Managed Endpoint using a Pytorch 1.13 Curated Envrionment and 3X E4s_v3 SKU w 4cores/32GBRAM/64GBSSD
 # this was updated to include a slew of GOF print statements to instrument the log file and help debugging a dreadfully slow bult-test cycle (~1 hr turnaround time)
 # after 7th, corrected use of PIL.Image, and inserted extra print()'s 
 
@@ -23,70 +23,17 @@
 # detected_scores Probability for each detected boxes.
 # detected_classes The class index for the detected boxes.
 
-# HISTORY - push DOWN stack-fashion...
 
-# 2023Nov09 mcvogt
-# this will be scoreURL015.py  it wil be the first to try and convert to predeictFromURL.py and read the input file from Azure Storage Account...
 
 #--------------- HISTORY STACK ------------------
+# HISTORY - push DOWN stack-fashion...
 
 # 2023Nov20 mcvogt
-# recovering/relocating from East-island Internet failure..    interrupted my first attemot to Deploy 021c...   trying again from T-Mobile hotspoit in West side of island...
+# recovering/relocating from East-island Internet failure..    interrupted my first attemot to Deploy 021c...   trying again from T-Mobile hotspoit in West side of island (St Thomas USVI)...
 
-
-# 2023Nov19 mcvogt back again after celebtrating wife's bday one day early because of weather issues... 
-# building 021b - will make sure outputs are converted to dict, and then serialized before attempting to return to calling notebook cell....
-# this will likely utilize dict() function, wrapped by dumps() function        json.dumps(dict(something that Should Be a dictionary))
-# initial failure, still having trouble converting return outputs to something passable... ndarray's (in outputs dict, cannot be json serialized ...  must convert to lists)
-
-# 2023Nov17 mcvogt (mevogt helped by listening)
-# mike updated score019 to 020...  got weird build errors implying Azure Endpoints could not buuld Container images for Curated Environments.. mike repored  to Prabesh, and Josh.  mike ran 
-# several test to isolate problem.. DID get older score018 to Deploy using Cur Env pytorch1.13, but NOT using pytorch2.0....    
-# later, mike worked on scoreURL020c.py, commented out model.predict() in run(), but allowing all init() to execute, including Class Model stuff.. and ALL WORKED, even using pytorch2.0!!!
-# but when mike built consumer020c, he found that scoreURL020c was still returning 'outputs' when outputs had not been defined!!!   failed... mike created dummy 'outputs' string to return.. .
-# this will be scoreURL020d.py and consume020d.ipynb
-# SUCCESS...     scoreURL020d.py worked ... it only had a single model.predict() statement commented, all of init() reported at each print(), and all of run() reported at each print().  
-# mike created scoreURL021.py - this will uncomment the model.predict(), and will wrap that ina  try/catch block to help generate more meaningful error codes.. but, all logic 
-# followed in getting init() working, is what was used for run() as well.....
-
-# scoreURL021.py was REALLY CLOSE - it DID successfully inference, only error was in return outputs - likely needed to return a dictionary!!!!!!!!!  updated to 021a which returns a dictionary!!!
-# NOTE - 021a DID return a dictionary, but it still errored.  021a DID correctly and accurately inference, and Print() output to log, but run()'s return ______ is still not doing what it should.
-
-
-# 2023Nov16 Thu  mcvogt
-# mike creating new 020... will include MUCH more of predict.py, including the Class Model and only different in that predict uses parsing for modelPath and image_url, and scoreURL020 will use pre-determined location for modelPath and will use REST POST request to get image_url...
-# NOTE - first time tried to build this, got weird Azure error about Bad Argument - pytorch imageURL not found, etc... like azure couldnt build the selected Curate ENvironment.    will repeat
-# the 020 build being very careful...
-
-
-# 2023Nov15 Wed mcvogt
-# updating scoreURL018 --> scoreURL019, this will remove comments from inferencing calls and be first attempt at new fully functional service
-# will update consume018 --> consume019, and will preserve new REST POST request used in 018...
-
-# 2023Nov13 Mon   mcvogt
-# past few days has been away, building out demo client-server REST api using python in VSCode, and ensuring we have a working strategy to 
-# 'port' over here for the containerized model w scorexxx.py script.   
-# will be building in the python REST SERVER host code in to scoreURL018.py. unclear if can run flask on this to respond to REST POST requests...
-# or if using flask is even needed... because this HAD to have been set up to respond to REST requests already, no??? looks like requests
-# support is provided by AMLRequest...  so for starters, will ignore flask, and assume score___.py 'can' respond to a properly constructed
-# REST POST request...
-# will be building in the python REST CLIENT code into consume018.ipynb cell.
-
-# BIG SUCCESS!!!!!!!
-# BIG SUCCESS!!!!!!!
-# BIG SUCCESS!!!!!!!
-# BIG SUCCESS!!!!!!!   consume constrcted REST POST request like VSCode ...   and sent it, and new route accepted and extracted image_url correctly...   ready to uncomment the inferencing...       
-# BIG SUCCESS!!!!!!!
-# BIG SUCCESS!!!!!!!
-
-
-# 2023Nov09 mcvogt
-
-# this will be scoreURL017.py
-# isolating run() body and debugging request
-
-# this will be scoreURL016.py
-# mike forgot to import requests in 015
+# ...
+# much development in weeks between Oct and end of 2023Nov
+# ...
 
 # THIS will be scoreURL015.py
 # this will convert the incoming 2nd argument from being a filepath in the local file system, to using a URL to a remotely-stored file
@@ -97,8 +44,8 @@
 
 
 
-
-
+#---------------- start of code -----------------
+#---------------- start of code -----------------
 #---------------- start of code -----------------
 # IMPORTS
 import json   # so, json is already here, so will have json.dumps() available...
@@ -176,6 +123,8 @@ class Model:
 
 #------------ helper functions ------------------
 # https://www.freecodecamp.org/news/python-switch-statement-switch-case-example/
+# NOTE - for the helper tagging function, these class tag definitions need to be edited to match the labels.txt of the users model.   the CWD model only
+#        had the two categories - Healthy and Unhealthy...   this helper function only makes the inferencing output easier to read, does Not affect inferencing.  
 def switch(class_id):
     if class_id == 0:
         return "Healthy Deer"
@@ -192,8 +141,6 @@ def print_outputs(outputs):
 #------------ helper functions ------------------
 
 
-# NOTE - init() and run() are the two Required functions inside of score.py for a Managed Endpoint...
-# NOTE - init() and run() are the two Required functions inside of score.py for a Managed Endpoint...
 # NOTE - init() and run() are the two Required functions inside of score.py for a Managed Endpoint...
 #-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 def init():

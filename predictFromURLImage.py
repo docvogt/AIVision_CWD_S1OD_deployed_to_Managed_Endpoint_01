@@ -51,6 +51,22 @@
 
 # now, ist working on AML Workspace!!!!!!
 
+# NOTE... additional test images available....
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/UnHealthySSWI000000012444874A.jpg" 
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/UnHealthySSWI000000012733278A.jpg" 
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/UnHealthySSWI000000012931348B.jpg" 
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/UnHealthySSWI000000013042672A.jpg" 
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/UnHealthySSWI000000013486750A.jpg" 
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/HealthySSWI000000016989655A.jpg" 
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/HealthySSWI000000017061751A.jpg" 
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/HealthySSWI000000017167085C.jpg" 
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/HealthySSWI000000016685494B.jpg" 
+# image_url = "https://asatestimages01.blob.core.windows.net/container-testimages/DEER_CWD_imagery/Mixed_Deer_Images_for_Testing/HealthySSWI000000016182548A.jpg" 
+
+# Label Data Legend
+# 0 deer-day-healthy      # if model returns 0 --> HEALTHY Deer,     1 --> UNHealthy Deer
+# 1 deer-day-unhealthy
+# above labels are from labels.txt, Note - Line numbers 1 and 2 map to read-in Index numbers 0 and 1
 
 
 #========================================= example ====================================
